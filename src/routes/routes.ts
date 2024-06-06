@@ -58,6 +58,29 @@ export default function (app: Express) {
     });
   });
 
+  app.post("/leaked", async (req, res) => {
+    const { email } = req.body;
+
+    let config1 = {
+      ...defaultConfig,
+      url: `https://www.ipqualityscore.com/api/json/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}`,
+    };
+    const r1 = await axios(config1);
+    let config2 = {
+      ...defaultConfig,
+      url: `https://www.ipqualityscore.com/api/json/leaked/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}`,
+    };
+    const r2 = await axios(config2);
+
+    res.json({
+      status: true,
+      statusCode: 200,
+      data: {
+        email: r1.data,
+        leaked: r2.data,
+      },
+    });
+  });
   app.post(`/database-scan`, async (req, res) => {
     const { email } = req.body;
 

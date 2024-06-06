@@ -57,6 +57,21 @@ function default_1(app) {
             data: r.data,
         });
     }));
+    app.post("/leaked", (req, res) => __awaiter(this, void 0, void 0, function* () {
+        const { email } = req.body;
+        let config1 = Object.assign(Object.assign({}, defaultConfig), { url: `https://www.ipqualityscore.com/api/json/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}` });
+        const r1 = yield (0, axios_1.default)(config1);
+        let config2 = Object.assign(Object.assign({}, defaultConfig), { url: `https://www.ipqualityscore.com/api/json/leaked/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}` });
+        const r2 = yield (0, axios_1.default)(config2);
+        res.json({
+            status: true,
+            statusCode: 200,
+            data: {
+                email: r1.data,
+                leaked: r2.data,
+            },
+        });
+    }));
     app.post(`/database-scan`, (req, res) => __awaiter(this, void 0, void 0, function* () {
         const { email } = req.body;
         let config = Object.assign(Object.assign({}, defaultConfig), { url: `https://www.ipqualityscore.com/api/json/leaked/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}` });
