@@ -2,11 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { connect } from "mongoose";
-import bcrypt from "bcryptjs";
 
 import routes from "./src/routes/routes";
-
-import { genPassword } from "./src/Lib/Methods";
 
 const app = express();
 app.use(

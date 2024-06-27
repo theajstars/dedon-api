@@ -19,6 +19,12 @@ function default_1(app) {
         maxBodyLength: Infinity,
         headers: {},
     };
+    app.get(`/`, (req, res) => __awaiter(this, void 0, void 0, function* () {
+        res.json({
+            status: "live",
+            message: "This is for the record. History is written by the victor",
+        });
+    }));
     app.post(`/url-history`, (req, res) => __awaiter(this, void 0, void 0, function* () {
         let config = Object.assign(Object.assign({}, defaultConfig), { url: "https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=url&start_date=2024-01-01&stop_date=2024-09-09" });
         let results = [];

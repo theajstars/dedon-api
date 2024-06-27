@@ -7,6 +7,12 @@ export default function (app: Express) {
     maxBodyLength: Infinity,
     headers: {},
   };
+  app.get(`/`, async (req, res) => {
+    res.json({
+      status: "live",
+      message: "This is for the record. History is written by the victor",
+    });
+  });
   app.post(`/url-history`, async (req, res) => {
     let config = {
       ...defaultConfig,
