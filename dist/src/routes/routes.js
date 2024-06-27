@@ -26,21 +26,24 @@ function default_1(app) {
         });
     }));
     app.post(`/url-history`, (req, res) => __awaiter(this, void 0, void 0, function* () {
-        let config = Object.assign(Object.assign({}, defaultConfig), { url: "https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=url&start_date=2024-01-01&stop_date=2024-09-09" });
+        const { page } = req.body;
+        let config = Object.assign(Object.assign({}, defaultConfig), { url: `https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=url&start_date=2024-01-01&stop_date=2024-09-09&page=${page !== null && page !== void 0 ? page : 1}` });
         let results = [];
-        const rEmail = yield (0, axios_1.default)(config);
-        if (rEmail && rEmail.data && rEmail.data.success) {
-            results = [...results, ...rEmail.data.requests];
+        const rUrl = yield (0, axios_1.default)(config);
+        if (rUrl && rUrl.data && rUrl.data.success) {
+            results = [...results, ...rUrl.data.requests];
         }
         res.json({
-            status: rEmail && rEmail.data ? true : false,
-            statusCode: rEmail && rEmail.data ? 200 : 500,
+            status: rUrl && rUrl.data ? true : false,
+            statusCode: rUrl && rUrl.data ? 200 : 500,
             data: results,
             length: results.length,
+            totalPages: rUrl.data.total_pages,
         });
     }));
     app.post(`/email-history`, (req, res) => __awaiter(this, void 0, void 0, function* () {
-        let config = Object.assign(Object.assign({}, defaultConfig), { url: "https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=email&start_date=2024-01-01&stop_date=2024-09-09" });
+        const { page } = req.body;
+        let config = Object.assign(Object.assign({}, defaultConfig), { url: `https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=email&start_date=2024-01-01&stop_date=2024-09-09&page=${page !== null && page !== void 0 ? page : 1}` });
         let results = [];
         const rEmail = yield (0, axios_1.default)(config);
         if (rEmail && rEmail.data && rEmail.data.success) {
@@ -51,6 +54,7 @@ function default_1(app) {
             statusCode: rEmail && rEmail.data ? 200 : 500,
             data: results,
             length: results.length,
+            totalPages: rEmail.data.total_pages,
         });
     }));
     app.post(`/email-scan`, (req, res) => __awaiter(this, void 0, void 0, function* () {

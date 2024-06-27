@@ -14,27 +14,35 @@ export default function (app: Express) {
     });
   });
   app.post(`/url-history`, async (req, res) => {
+    const { page } = req.body;
     let config = {
       ...defaultConfig,
-      url: "https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=url&start_date=2024-01-01&stop_date=2024-09-09",
+      url: `https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=url&start_date=2024-01-01&stop_date=2024-09-09&page=${
+        page ?? 1
+      }`,
     };
     let results = [];
-    const rEmail = await axios(config);
-    if (rEmail && rEmail.data && rEmail.data.success) {
-      results = [...results, ...rEmail.data.requests];
+    const rUrl = await axios(config);
+    if (rUrl && rUrl.data && rUrl.data.success) {
+      results = [...results, ...rUrl.data.requests];
     }
 
     res.json({
-      status: rEmail && rEmail.data ? true : false,
-      statusCode: rEmail && rEmail.data ? 200 : 500,
+      status: rUrl && rUrl.data ? true : false,
+      statusCode: rUrl && rUrl.data ? 200 : 500,
       data: results,
       length: results.length,
+
+      totalPages: rUrl.data.total_pages,
     });
   });
   app.post(`/email-history`, async (req, res) => {
+    const { page } = req.body;
     let config = {
       ...defaultConfig,
-      url: "https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=email&start_date=2024-01-01&stop_date=2024-09-09",
+      url: `https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=email&start_date=2024-01-01&stop_date=2024-09-09&page=${
+        page ?? 1
+      }`,
     };
     let results = [];
     const rEmail = await axios(config);
@@ -47,6 +55,7 @@ export default function (app: Express) {
       statusCode: rEmail && rEmail.data ? 200 : 500,
       data: results,
       length: results.length,
+      totalPages: rEmail.data.total_pages,
     });
   });
 
