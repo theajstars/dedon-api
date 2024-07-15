@@ -17,7 +17,7 @@ export default function (app: Express) {
     const { page } = req.body;
     let config = {
       ...defaultConfig,
-      url: `https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=url&start_date=2024-01-01&stop_date=2024-09-09&page=${
+      url: `https://www.ipqualityscore.com/api/json/requests/wtt7DGuPwrRyxcaknAOPmsixKeSIofvp/list?type=url&start_date=2024-01-01&stop_date=2024-09-09&page=${
         page ?? 1
       }`,
     };
@@ -40,7 +40,7 @@ export default function (app: Express) {
     const { page } = req.body;
     let config = {
       ...defaultConfig,
-      url: `https://www.ipqualityscore.com/api/json/requests/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/list?type=email&start_date=2024-01-01&stop_date=2024-09-09&page=${
+      url: `https://www.ipqualityscore.com/api/json/requests/wtt7DGuPwrRyxcaknAOPmsixKeSIofvp/list?type=email&start_date=2024-01-01&stop_date=2024-09-09&page=${
         page ?? 1
       }`,
     };
@@ -63,7 +63,7 @@ export default function (app: Express) {
     const { email } = req.body;
     let config = {
       ...defaultConfig,
-      url: `https://www.ipqualityscore.com/api/json/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}`,
+      url: `https://www.ipqualityscore.com/api/json/email/wtt7DGuPwrRyxcaknAOPmsixKeSIofvp/${email}`,
     };
     const r = await axios(config);
     res.json({
@@ -78,12 +78,12 @@ export default function (app: Express) {
 
     let config1 = {
       ...defaultConfig,
-      url: `https://www.ipqualityscore.com/api/json/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}`,
+      url: `https://www.ipqualityscore.com/api/json/email/wtt7DGuPwrRyxcaknAOPmsixKeSIofvp/${email}`,
     };
     const r1 = await axios(config1);
     let config2 = {
       ...defaultConfig,
-      url: `https://www.ipqualityscore.com/api/json/leaked/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}`,
+      url: `https://www.ipqualityscore.com/api/json/leaked/email/wtt7DGuPwrRyxcaknAOPmsixKeSIofvp/${email}`,
     };
     const r2 = await axios(config2);
 
@@ -101,7 +101,7 @@ export default function (app: Express) {
 
     let config = {
       ...defaultConfig,
-      url: `https://www.ipqualityscore.com/api/json/leaked/email/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${email}`,
+      url: `https://www.ipqualityscore.com/api/json/leaked/email/wtt7DGuPwrRyxcaknAOPmsixKeSIofvp/${email}`,
     };
     const r = await axios(config);
     res.json({
@@ -115,7 +115,7 @@ export default function (app: Express) {
     const { url } = req.body;
     let config = {
       ...defaultConfig,
-      url: `https://www.ipqualityscore.com/api/json/url/XWLVJZNqiRWZsHAmnq1GLOQl8DayorxU/${url}`,
+      url: `https://www.ipqualityscore.com/api/json/url/wtt7DGuPwrRyxcaknAOPmsixKeSIofvp/${url}`,
     };
     const r = await axios(config);
     res.json({
